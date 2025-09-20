@@ -1,6 +1,7 @@
-from sqlalchemy.orm import declarative_base,sessionmaker
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import URL,create_engine
-import config
+from  . import config
 
 url_object = URL.create(
     drivername='postgresql+psycopg2',
