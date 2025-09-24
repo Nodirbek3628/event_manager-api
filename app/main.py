@@ -1,4 +1,7 @@
 from fastapi import FastAPI
+
+from .dependencies import get_db
+
 from app.models import *
 from app.database import Base,engine
 from .routers.users import router as users_router

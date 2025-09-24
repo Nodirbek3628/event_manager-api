@@ -10,7 +10,7 @@ from sqlalchemy import (
     Enum,
     CheckConstraint
 )
-from database import Base
+from app.database import Base
 
 
 class UserTypes(str, enum.Enum):
@@ -20,7 +20,7 @@ class UserTypes(str, enum.Enum):
 
 
 class Users(Base):
-    __tablname__ = "users"
+    __tablename__ = "users"
     id       = Column(Integer, primary_key=True,index=True)
     username = Column(String(length=64), unique=True, nullable=False)
     email    = Column(String(length=64), unique=True, nullable=False)
@@ -28,7 +28,7 @@ class Users(Base):
     hashed_password = Column(TEXT,nullable=False)
     user_type = Column(Enum(UserTypes), default=UserTypes.USER, nullable=False)
     create_at = Column(DateTime, default=datetime.utcnow, nullable=False)
-    create_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow,nullable=False)
+    update_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow,nullable=False)
 
     __table_args__ = (
         CheckConstraint("char_length(username) >= 3", name=("username_min_length")),
