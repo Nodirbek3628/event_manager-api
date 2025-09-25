@@ -7,11 +7,7 @@ from sqlalchemy import (
     CheckConstraint,
     Enum
 )
-from sqlalchemy.orm import relationship
 from .base import BaseModel
-
-from app.routers.events import Events
-
 
 class VenueTypes(str, enum.Enum):
     ONLINE = "online"
@@ -32,6 +28,5 @@ class Venues(BaseModel):
         CheckConstraint("char_length(name) >= 3", name="venue_name_min_length"),
     )
 
-    
 
-Venues.events = relationship("Events", back_populates="venue")
+
