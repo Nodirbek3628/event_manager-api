@@ -48,7 +48,7 @@ class Events(BaseModel):
     organizer_id = Column(Integer, ForeignKey("users.id"))
 
     venue     = relationship("Venues", back_populates="events")
-    organizer = relationship("Venues", back_populates="events")
+    organizer = relationship("Users", back_populates="events")
 
     __table_args__ = (
         CheckConstraint("char_length(name) >= 3", name="event_name_min_length"),

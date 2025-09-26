@@ -7,7 +7,10 @@ from sqlalchemy import (
     CheckConstraint,
     Enum
 )
+
 from .base import BaseModel
+
+
 
 class VenueTypes(str, enum.Enum):
     ONLINE = "online"

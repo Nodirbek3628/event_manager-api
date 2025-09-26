@@ -14,7 +14,7 @@ class VenuesTypes(str, Enum):
 
 class VenueBase(BaseModel):
     name: str = Field(min_length=3, max_length=100)
-    address: str = Field(min_length=10, max_length=200)
+    location: str = Field(min_length=10, max_length=200)
     venue_type: VenuesTypes 
 
 class VenueCreate(VenueBase):
@@ -22,7 +22,7 @@ class VenueCreate(VenueBase):
 
 class VenueUpdate(BaseModel):
     name: str = Field(min_length=3, max_length=100)
-    address: str = Field(min_length=10, max_length=200)
+    address: str = Field(min_length=3, max_length=200)
     venue_type: VenuesTypes | None = Field(None)
 
 class VenueOut(VenueBase):
@@ -30,5 +30,5 @@ class VenueOut(VenueBase):
     created_at : datetime | None = None
     update_at : datetime | None = None
 
-class Config:
-    from_attributes = True
+    class Config:
+        from_attributes = True

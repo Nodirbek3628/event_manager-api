@@ -31,7 +31,7 @@ async def create_venue(venue: VenueCreate, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(db_venue)
 
-    return VenueOut.from_orm(db_venue)
+    return db_venue
 
 @router.get("/{venue_id}", response_model=VenueOut)
 async def get_venue(venue_id: int, db: Session = Depends(get_db)):
@@ -52,9 +52,9 @@ async def update_venue(venue_id: int, updated_venue: VenueCreate, db: Session = 
             detail="Venue not found"
         )
 
-    venue.name = updated_venue.name
+    venue.name = updated_venue.name,
     venue.location = updated_venue.location
-    venue.venue_type = updated_venue.venue_type
+    venue.venue_type = updated_venue.venue_type,
 
     db.commit()
     db.refresh(venue)
